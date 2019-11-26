@@ -1,2 +1,2 @@
 # bucket
-The project is not open source, only the [wiki](https://github.com/getbucket/bucket/wiki) is open
+The project has not been released, only the [wiki](https://github.com/getbucket/bucket/wiki) is open
