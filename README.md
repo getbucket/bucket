@@ -1,2 +1,2 @@
 # bucket
-bucket pakcage manager for unity
+The project is not open source, only the wiki is open
