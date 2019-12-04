@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="16.4.1" version="16.4.1" Modules="simple" RootPath="." Language="en" Id="{F3D20431-4684-4483-B66E-4CF15FF69CA4}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="16.4.1" version="16.5" Modules="simple" RootPath="." Language="en" Id="{F3D20431-4684-4483-B66E-4CF15FF69CA4}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
     <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;DigCertStoreComponent;MsiAssemblyComponent;MsiClassComponent;MsiServInstComponent;MsiExtComponent;TilesComponent;MsiOrgComponent;FixupComponent;MsiThemeComponent;BackgroundImagesComponent;UpdaterComponent;SerValComponent;MsiInstExSeqComponent;DictionaryComponent;MsiAppSearchComponent;MsiOdbcDataSrcComponent;CPLAppletComponent;ActSyncAppComponent;PreReqComponent;WebApplicationsComponent;MsiJavaComponent;MsiDriverPackagesComponent;UserAccountsComponent;ScheduledTasksComponent;SqlConnectionComponent;AutorunComponent;FirewallExceptionComponent;GameUxComponent;MsiDirectEditorComponent;SharePointSlnComponent;SilverlightSlnComponent;MultipleInstancesComponent;SccmComponent;TilesComponent"/>
   </COMPONENT>
@@ -12,13 +12,12 @@
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPHELPLINK" Value="https://github.com/getbucket/bucket"/>
-    <ROW Property="ARPPRODUCTICON" Value="favicon.exe" Type="8"/>
     <ROW Property="ARPURLINFOABOUT" Value="https://github.com/getbucket/bucket/issues"/>
     <ROW Property="ARPURLUPDATEINFO" Value="https://github.com/getbucket/bucket/releases"/>
     <ROW Property="Manufacturer" Value="Bucket"/>
     <ROW Property="ProductCode" Value="1033:{A902C116-7122-4471-A7D8-36745E5E3BE2} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Bucket dependency package manager"/>
+    <ROW Property="ProductName" Value="Bucket  package manager"/>
     <ROW Property="ProductVersion" Value="0.3.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{AB615FBA-ED5B-4D6E-AD8E-5C91C3EA1796}"/>
@@ -37,14 +36,14 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{23013E61-8E5A-478C-A50B-B0E11CFF5F4A}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="Bucket.CLI.dll" ComponentId="{8C0DAC3D-EA2E-4580-B771-C4CFF778022F}" Directory_="APPDIR" Attributes="256" KeyPath="Bucket.CLI.dll"/>
-    <ROW Component="Bucket.dll" ComponentId="{B287FF22-1BBF-45BE-9BAD-EC198DB1E965}" Directory_="APPDIR" Attributes="0" KeyPath="Bucket.dll"/>
-    <ROW Component="GameBox.Console.dll" ComponentId="{F58D9185-6287-45DB-B897-6664E9C88519}" Directory_="APPDIR" Attributes="0" KeyPath="GameBox.Console.dll"/>
-    <ROW Component="GameBox.Semver.dll" ComponentId="{3F5A55AE-BFB3-4BD1-A3AE-3AE782C39ED8}" Directory_="APPDIR" Attributes="0" KeyPath="GameBox.Semver.dll"/>
-    <ROW Component="Newtonsoft.Json.Schema.dll" ComponentId="{1471D2B8-EAE0-43BD-90FF-956652A16C54}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.Schema.dll"/>
-    <ROW Component="Newtonsoft.Json.dll" ComponentId="{FD68D28E-B053-4125-9A2E-6AEF519A6984}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="Bucket.CLI.dll" ComponentId="{87B2E478-4535-4B92-9A6B-940FB2890E8D}" Directory_="APPDIR" Attributes="0" KeyPath="Bucket.CLI.dll"/>
+    <ROW Component="Bucket.Semver.dll" ComponentId="{B7D2E8F1-F757-4040-8087-86D2F4C92B85}" Directory_="APPDIR" Attributes="0" KeyPath="Bucket.Semver.dll"/>
+    <ROW Component="Bucket.dll" ComponentId="{130FE12B-06C4-436C-970B-3750777C8116}" Directory_="APPDIR" Attributes="0" KeyPath="Bucket.dll"/>
+    <ROW Component="GameBox.Console.dll" ComponentId="{5F254ABC-6656-4663-B991-2A41E320D134}" Directory_="APPDIR" Attributes="0" KeyPath="GameBox.Console.dll"/>
+    <ROW Component="Newtonsoft.Json.Schema.dll" ComponentId="{E80E6905-2EE9-4B0F-9D8A-7D29E8281A81}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.Schema.dll"/>
+    <ROW Component="Newtonsoft.Json.dll" ComponentId="{ACB2A12B-F713-4D6C-8F0C-CC6080C366DD}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="ProductInformation" ComponentId="{426B02C7-163F-474A-A374-6E2FECA71CC2}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="bucket" ComponentId="{D6374468-CC21-42DF-BF5E-B3367AF8DFA7}" Directory_="APPDIR" Attributes="0" KeyPath="bucket" Type="0"/>
+    <ROW Component="bucket" ComponentId="{C9331094-2733-49C2-8C1E-9FE21C9A4925}" Directory_="APPDIR" Attributes="0" KeyPath="bucket" Type="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -61,13 +60,9 @@
     <ROW File="Bucket.CLI.xml" Component_="bucket" FileName="BUCKET~1.XML|Bucket.CLI.xml" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\Bucket.CLI.xml" SelfReg="false"/>
     <ROW File="Bucket.dll" Component_="Bucket.dll" FileName="Bucket.dll" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\Bucket.dll" SelfReg="false"/>
     <ROW File="Bucket.pdb" Component_="Bucket.dll" FileName="Bucket.pdb" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\Bucket.pdb" SelfReg="false"/>
+    <ROW File="Bucket.Semver.dll" Component_="Bucket.Semver.dll" FileName="BUCKET~2.DLL|Bucket.Semver.dll" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\Bucket.Semver.dll" SelfReg="false"/>
     <ROW File="Bucket.xml" Component_="bucket" FileName="Bucket.xml" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\Bucket.xml" SelfReg="false"/>
     <ROW File="GameBox.Console.dll" Component_="GameBox.Console.dll" FileName="GAMEBO~1.DLL|GameBox.Console.dll" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\GameBox.Console.dll" SelfReg="false"/>
-    <ROW File="GameBox.Console.pdb" Component_="GameBox.Console.dll" FileName="GAMEBO~1.PDB|GameBox.Console.pdb" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\GameBox.Console.pdb" SelfReg="false"/>
-    <ROW File="GameBox.Console.xml" Component_="bucket" FileName="GAMEBO~1.XML|GameBox.Console.xml" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\GameBox.Console.xml" SelfReg="false"/>
-    <ROW File="GameBox.Semver.dll" Component_="GameBox.Semver.dll" FileName="GAMEBO~2.DLL|GameBox.Semver.dll" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\GameBox.Semver.dll" SelfReg="false"/>
-    <ROW File="GameBox.Semver.pdb" Component_="GameBox.Semver.dll" FileName="GAMEBO~2.PDB|GameBox.Semver.pdb" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\GameBox.Semver.pdb" SelfReg="false"/>
-    <ROW File="GameBox.Semver.xml" Component_="bucket" FileName="GAMEBO~2.XML|GameBox.Semver.xml" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\GameBox.Semver.xml" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~2.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="src\Bucket.CLI\bin\Release\netcoreapp3.0\publish\Newtonsoft.Json.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
@@ -163,12 +158,9 @@
     <ROW Feature_="MainFeature" Component_="bucket"/>
     <ROW Feature_="MainFeature" Component_="Bucket.CLI.dll"/>
     <ROW Feature_="MainFeature" Component_="Bucket.dll"/>
+    <ROW Feature_="MainFeature" Component_="Bucket.Semver.dll"/>
     <ROW Feature_="MainFeature" Component_="GameBox.Console.dll"/>
-    <ROW Feature_="MainFeature" Component_="GameBox.Semver.dll"/>
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="favicon.exe" SourcePath="favicon.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
