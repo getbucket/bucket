@@ -23,7 +23,7 @@ Please send any sensitive issue to [menghanyu1994@gmail.com](mailto:menghanyu199
 
 The open source license used by Bucket is MIT license. 
 
-## Supported
+## Support
 
 - [New Issues](https://github.com/getbucket/bucket/issues): We will respond within 2 business days at the latest.
 
