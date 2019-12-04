@@ -15,10 +15,6 @@ No public server has been deployed at this stage.
 - [dotnet core 3.0+](https://dotnet.microsoft.com/download) or above
 - [git 1.7.0+](https://git-scm.com/) (options)
 
-## Security Reports
-
-Please send any sensitive issue to [menghanyu1994@gmail.com](mailto:menghanyu1994@gmail.com). Thanks!
-
 ## License
 
 The open source license used by Bucket is MIT license. 
