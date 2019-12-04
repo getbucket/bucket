@@ -1,4 +1,4 @@
-# Bucket dependency manager
+# Bucket package manager
 
 Bucket helps you declare, manage, and install dependencies of projects.
 
