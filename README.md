@@ -2,18 +2,18 @@
 
 Bucket helps you install, update, and remove dependencies of projects.
 
-## Learning
-
-Bucket has the most extensive and thorough [documentation](https://github.com/getbucket/bucket/wiki), making it a breeze to get started with the bucket.
-
-## Package
-
-No public server has been deployed at this stage.
-
 ## Requirements
 
 - [dotnet core 3.0+](https://dotnet.microsoft.com/download) or above
 - [git 1.7.0+](https://git-scm.com/) (options)
+
+## Documention
+
+Bucket has the most extensive and thorough [documentation](https://github.com/getbucket/bucket/wiki), making it a breeze to get started with the bucket.
+
+## Central Service
+
+No public central service has been deployed at this stage.
 
 ## License
 
