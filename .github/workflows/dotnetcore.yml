@@ -12,4 +12,10 @@ jobs:
       with:
         dotnet-version: 3.0.100
     - name: Test bucket
-      run: dotnet test -c Release -s src/settings.runsettings /p:CollectCoverage=true /p:CoverletOutputFormat=teamcity /p:Exclude=[*.Tests]* /p:Threshold=60 /p:ThresholdType=line
+      run: dotnet test -c Release -s src/settings.runsettings /p:CollectCoverage=true /p:CoverletOutput=\"coverage/\" /p:CoverletOutputFormat=teamcity /p:Exclude=[*.Tests]* /p:Threshold=60 /p:ThresholdType=line
+    - name: Report code coverage
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: | 
+        dotnet tool install --global Codecov.Tool
+        codecov -f /coverage/coverage.opencover.xml
