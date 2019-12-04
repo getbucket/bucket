@@ -1,6 +1,6 @@
 # Bucket package manager ![](https://github.com/getbucket/bucket/workflows/bucket/badge.svg)
 
-Bucket helps you declare, manage, and install dependencies of projects.
+Bucket helps you install, update, and remove dependencies of projects.
 
 ## Learning
 
