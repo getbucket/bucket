@@ -1,0 +1,41 @@
+--TEST--
+intentionally ignores root requirements even if said package is also a dependency of one the requirements that is whitelisted for update.
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                { "name": "a/a", "version": "1.0.0" },
+                { "name": "a/a", "version": "1.1.0" },
+                { "name": "b/b", "version": "1.0.0", "require": { "a/a": "~1.0" } },
+                { "name": "b/b", "version": "1.1.0", "require": { "a/b": "~1.1" } }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "~1.0",
+        "b/b": "~1.0"
+    }
+}
+
+--INSTALLED--
+{
+    "packages": [
+        { "name": "a/a", "version": "1.0.0" },
+        { "name": "b/b", "version": "1.0.0", "require": { "a/a": "~1.0" } }
+    ]
+}
+
+--RUN--
+update b/b --with-dependencies
+
+--EXPECT-OUTPUT--
+<warning>Dependency "a/a" is also a root requirement, but is not explicitly whitelisted. Ignoring.</warning>
+Loading bucket repositories with package information
+Updating dependencies (including require-dev)
+Nothing to install or update
+Writing lock file
+
+--EXPECT--

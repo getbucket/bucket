@@ -1,0 +1,35 @@
+--TEST--
+Replace takes precedence only in higher priority repositories and if explicitly required
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                { "name": "fork-b/b", "version": "1.1.0", "replace": { "b/b": "1.1.0" } }
+            ]
+        },
+        {
+            "type": "package",
+            "package": [
+                { "name": "a/a", "version": "1.0.0" },
+                { "name": "b/b", "version": "1.0.0" },
+                { "name": "c/c", "version": "1.0.0", "require": { "fork-b/b": "*" } },
+                { "name": "d/d", "version": "1.1.0", "replace": { "a/a": "1.1.0" } }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "1.*",
+        "b/b": "1.*",
+        "c/c": "1.*"
+    }
+}
+--RUN--
+install
+
+--EXPECT--
+Installing a/a (1.0.0)
+Installing fork-b/b (1.1.0)
+Installing c/c (1.0.0)

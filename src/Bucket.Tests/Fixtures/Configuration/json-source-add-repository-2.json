@@ -1,0 +1,15 @@
+{
+    "repositories": [
+        {
+            "name": "foo",
+            "type": "vcs",
+            "url": "http://bar.com",
+            "secure-http": false
+        },
+        {
+            "type": "bucket",
+            "url": "http://foo.com",
+            "allow-ssl-downgrade": false
+        }
+    ]
+}

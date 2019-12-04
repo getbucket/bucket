@@ -1,0 +1,12 @@
+{
+	"config": {
+		"bin-compat": "illegal",
+		"secure-http": "illegal",
+		"github-protocols": 0,
+		"github-domains": 0,
+		"gitlab-domains": { "foo": "bar" },
+		"store-auths": { "foo": "bar" },
+		"extra-field-not-found": "{$key-not-found}/foo",
+		"cache-files-maxsize":  "100byte"
+	}
+}

@@ -1,0 +1,100 @@
+--TEST--
+Update a project which requires decision reverts and learning a positive literal to arrive at a correct solution.
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                {
+                    "name": "foo/product",
+                    "require": {
+                        "foo/core": "1.0.0",
+                        "foo-bar/product": ">=1.0.0",
+                        "foo/product-gui": "1.0.0"
+                    },
+                    "version": "1.0.0"
+                },
+                {
+                    "name": "foo/core",
+                    "version": "1.0.0",
+                    "require": {
+                        "foo/store": "1.0.0"
+                    }
+                },
+                {
+                    "name": "foo/store",
+                    "version": "1.0.0",
+                    "require": {
+                        "foo/kernel": "<=2.0.0"
+                    }
+                },
+                {
+                    "name": "foo-bar/product",
+                    "version": "1.0.0",
+                    "require": {
+                        "foo/log": "1.0.0"
+                    }
+                },
+                {
+                    "name": "foo-bar/product",
+                    "version": "2.0.0",
+                    "require": {
+                        "foo/log": "1.0.0",
+                        "foo/kernel": ">=1.0.0"
+                    }
+                },
+                {
+                    "name": "foo/product-gui",
+                    "version": "1.0.0",
+                    "require": {
+                        "foo/log": ">=1.0.0"
+                    }
+                },
+                {
+                    "name": "foo/log",
+                    "version": "1.0.0",
+                    "require": { }
+                },
+                {
+                    "name": "foo/log",
+                    "version": "2.0.0",
+                    "require": { }
+                },
+
+                {
+                    "name": "foo/kernel",
+                    "version": "1.0.0",
+                    "require": { }
+                },
+                {
+                    "name": "foo/kernel",
+                    "version": "2.0.0",
+                    "require": {
+                    }
+                },
+                {
+                    "name": "foo/kernel",
+                    "version": "3.0.0",
+                    "require": { }
+                }
+            ]
+        }
+    ],
+    "require": {
+        "foo/product": "1.0.0"
+    }
+}
+--RUN--
+update
+
+--EXPECT--
+Installing foo/log (1.0.0)
+Installing foo/product-gui (1.0.0)
+Installing foo/kernel (2.0.0)
+Installing foo-bar/product (2.0.0)
+Installing foo/store (1.0.0)
+Installing foo/core (1.0.0)
+Installing foo/product (1.0.0)
+

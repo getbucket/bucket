@@ -1,0 +1,15 @@
+{
+  "repositories": [
+		{
+			"name": "foo",
+			"type": "git",
+			"url": "https://example.com/",
+			"secure-http": false
+		},
+		{
+			"name": "foo",
+			"type": "bucket",
+			"url": "https://example.com/"
+		}
+  ]
+}

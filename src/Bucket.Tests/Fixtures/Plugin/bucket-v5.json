@@ -1,0 +1,8 @@
+{
+	"name": "plugin-v5",
+	"version": "1.0.0",
+	"type": "bucket-plugin",
+	"require": {
+		"bucket-plugin-api": "^0.1"
+	}
+}

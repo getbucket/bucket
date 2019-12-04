@@ -1,0 +1,11 @@
+{
+	"name": "plugin-v6",
+	"version": "1.0.0",
+	"type": "bucket-plugin",
+	"extra": {
+		"plugin": { "foo": "bar" }
+	},
+	"require": {
+		"bucket-plugin-api": "^0.1"
+	}
+}

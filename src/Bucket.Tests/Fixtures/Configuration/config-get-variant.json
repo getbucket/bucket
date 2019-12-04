@@ -1,0 +1,14 @@
+{
+	"config": {
+		"secure-http": 0,
+		"github-protocols": "git",
+		"github-domains": "github.com",
+		"gitlab-domains": "gitlab.com",
+		"store-auths": true,
+		"discard-changes": "stash",
+		"preferred-install": {
+			"foo/bar": "dist",
+			"foo/*": "source"
+		}
+	}
+}

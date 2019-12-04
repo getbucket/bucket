@@ -1,0 +1,18 @@
+{
+    "require": {
+        "foo": "1.0.0",
+        "bar": "2.0.0"
+    },
+    "require-dev": {
+        "foo-dev": "1.0.0"
+    },
+    "replace": {
+        "foo-replace": "1.0.0"
+    },
+    "conflict": {
+        "foo-conflict": "1.0.0"
+    },
+    "provide": {
+        "foo-provide": "1.0.0"
+    }
+}

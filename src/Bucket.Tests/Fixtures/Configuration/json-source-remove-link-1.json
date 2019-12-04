@@ -1,0 +1,11 @@
+{
+    "require": {
+        "foo": "1.0.0"
+    },
+    "conflict": {
+        "foo-conflict": "1.0.0"
+    },
+    "provide": {
+        "foo-provide": "1.0.0"
+    }
+}

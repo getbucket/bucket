@@ -1,0 +1,63 @@
+--TEST--
+Converting from one VCS type to another (including an URL change) should update the lock file.
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                {
+                    "name": "a/a", 
+					"version": "1.0.0",
+                    "source": { "reference": "new-git-ref", "type": "git", "url": "new-git-url" }
+                }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "1.0.0"
+    }
+}
+--INSTALLED--
+{
+	"packages": [
+		{
+			"name": "a/a",
+			"version": "1.0.0",
+			"source": { "reference": "old-hg-ref", "type": "gitlab", "url": "old-hg-url" }
+		}
+	]
+}
+--LOCK--
+{
+    "packages": [
+        {
+            "name": "a/a",
+			"version": "1.0.0",
+            "source": { "reference": "old-hg-ref", "type": "gitlab", "url": "old-hg-url" }
+        }
+    ]
+}
+--RUN--
+update
+
+--EXPECT-LOCK--
+{
+    "packages": [
+        {
+            "name": "a/a",
+			"version": "1.0.0",
+            "source": { "reference": "new-git-ref", "type": "git", "url": "new-git-url" }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {}
+}
+--EXPECT--
+

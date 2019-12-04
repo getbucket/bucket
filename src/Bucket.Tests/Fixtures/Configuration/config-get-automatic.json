@@ -1,0 +1,10 @@
+{
+	"config": {
+		"int-value": 100,
+		"string-value": "foo",
+		"string-value-variable": "{$string-value}/bar",
+		"bool-value": true,
+		"float-value": 0.123456,
+		"array-string-value": [ "foo", "bar" ]
+	}
+}

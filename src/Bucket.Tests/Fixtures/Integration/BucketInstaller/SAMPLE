@@ -1,0 +1,20 @@
+--TEST--
+<(required) test description>
+--BUCKET--
+<(required) bucket.json file definition>
+--RUN--
+<(required) install or update pick one of two>
+--EXPECT--
+<(required) error message or stringified operations>
+--LOCK--
+<bucket.lock file definition>
+--INSTALLED--
+<installed.json file definition>
+--EXPECT-LOCK--
+<bucket.lock file after the run>
+--EXPECT-OUTPUT--
+<expect output string>
+--EXPECT-EXCEPTION--
+<expect exception stringified type>
+--EXPECT-EXIT-CODE--
+<int value indicates the expected process exit code(EXPECT-EXCEPTION and EXPECT-EXIT-CODE are mutually exclusive)>

@@ -1,0 +1,15 @@
+{
+	"name": "test",
+	"version": "1.0.0",
+	"require": {
+		"foo/bar": "~2.1.0-beta2",
+		"bar/baz": "1.0.x-dev as 1.2.0",
+		"qux/quux": "1.0.*@rc",
+		"multi/complex": "~1.0,>=1.0.2@dev",
+		"multi/or": "^2.0@dev || ^2.0@dev",
+		"multi/lowest-wins": "^2.0@rc || >=3.0@dev , ~3.5@alpha",
+		"multi/without-flags1": "dev-master || 2.0 , ~3.5-alpha",
+		"multi/without-flags2": "3.0-beta || 2.0 , ~3.5-alpha"
+	},
+	"minimum-stability": "alpha"
+}

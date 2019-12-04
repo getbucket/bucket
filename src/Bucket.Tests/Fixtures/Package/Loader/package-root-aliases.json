@@ -1,0 +1,9 @@
+{
+	"name": "test",
+	"version": "1.0.0",
+	"require": {
+		"foo/bar": "dev-bug-fixed as 1.0.x-dev",
+		"bar/baz": "1.0.x-dev as 1.2.0",
+		"bar/boo": "1.0.5 as 1.2.x-dev"
+	}
+}

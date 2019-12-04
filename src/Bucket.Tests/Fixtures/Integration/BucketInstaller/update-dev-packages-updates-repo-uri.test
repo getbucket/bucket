@@ -1,0 +1,91 @@
+--TEST--
+Updating dev packages where no reference change happened triggers a repo url change
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                {
+                    "name": "a/a",
+					"version": "2.1.x-dev",
+                    "source": { "reference": "newmaster", "type": "git", "url": "newurl" }
+                },
+                {
+                    "name": "b/b",
+					"version": "2.1.x-dev",
+                    "source": { "reference": "master", "type": "git", "url": "newurl" }
+                }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "~2.1",
+        "b/b": "~2.1"
+    },
+    "minimum-stability": "dev"
+}
+--INSTALLED--
+{
+	"packages": [
+		{
+			"name": "a/a",
+			"version": "2.0.x-dev",
+			"source": { "reference": "oldmaster", "type": "git", "url": "oldurl" }
+		},
+		{
+			"name": "b/b",
+			"version": "2.1.x-dev",
+			"source": { "reference": "master", "type": "git", "url": "oldurl" }
+		}
+	]
+}
+--LOCK--
+{
+    "packages": [
+        {
+            "name": "a/a",
+			"version": "2.1.x-dev",
+            "source": { "reference": "newmaster", "type": "git", "url": "oldurl" }
+        },
+        {
+            "name": "b/b",
+			"version": "2.1.x-dev",
+            "source": { "reference": "master", "type": "git", "url": "oldurl" }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false
+}
+--RUN--
+update
+
+--EXPECT-LOCK--
+{
+    "packages": [
+        {
+            "name": "a/a",
+			"version": "2.1.x-dev",
+            "source": { "reference": "newmaster", "type": "git", "url": "newurl" }
+        },
+        {
+            "name": "b/b",
+			"version": "2.1.x-dev",
+            "source": { "reference": "master", "type": "git", "url": "newurl" }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {}
+}
+--EXPECT--
+Updating a/a (2.0.x-dev oldmaster) to a/a (2.1.x-dev newmaster)

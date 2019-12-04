@@ -1,0 +1,11 @@
+.vs
+dist/
+src/*/bin/
+src/*/obj/
+TestResults/
+*.csproj.user
+.DS_Store
+bucket-installer-cache/
+bucket-installer-SetupFiles/
+publish.go
+.idea/

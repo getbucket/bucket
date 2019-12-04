@@ -1,0 +1,10 @@
+{
+    "repositories": [
+        {
+            "name": "foo",
+            "type": "vcs",
+            "url": "http://foo.com",
+            "secure-http": false
+        }
+    ]
+}

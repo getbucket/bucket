@@ -1,0 +1,11 @@
+{
+	"name": "plugin-v2",
+	"version": "1.0.0",
+	"type": "bucket-plugin",
+	"extra": {
+		"plugin": [ "Example.Plugin.dll", "Example.Plugin.dll" ]
+	},
+	"require": {
+		"bucket-plugin-api": "^0.1"
+	}
+}

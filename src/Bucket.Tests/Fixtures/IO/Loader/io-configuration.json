@@ -1,0 +1,20 @@
+{
+	"config": {
+		"github-oauth": {
+			"foo.com": "footoken"
+		},
+		"gitlab-oauth": {
+			"bar.com": "bar-token",
+			"baz.com": "baz-token"
+		},
+		"gitlab-token": {
+			"aux.com": "aux-private-token"
+		},
+		"http-basic": {
+			"foobar.com": {
+				"username": "foobar",
+				"password": "foobar-password"
+			}
+		}
+	}
+}

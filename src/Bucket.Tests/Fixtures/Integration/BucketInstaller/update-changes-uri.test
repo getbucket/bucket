@@ -1,0 +1,180 @@
+--TEST--
+Update updates URLs for updated packages if they have changed
+
+a/a is dev and gets everything updated as it updates to a new ref
+b/b is a tag and gets everything updated by updating the package URL directly
+c/c is a tag and not whitelisted and gets the new URL but keeps its old ref
+d/d is dev but with a #ref so it should get URL updated but not the reference
+e/e is dev and newly installed with a #ref so it should get the correct URL but with the #111 ref
+f/f is dev but not whitelisted and gets the new URL but keeps its old ref
+g/g is dev and installed in a different ref than the #ref, so it gets updated and gets the new URL but not the new ref
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                {
+                    "name": "a/a",
+					"version": "dev-master",
+                    "source": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/a/newa", "type": "git" },
+                    "dist": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/repos/a/newa/tarball/2222222222222222222222222222222222222222", "type": "tar", "shasum": "newsum" }
+                },
+                {
+                    "name": "b/b",
+					"version": "2.0.3",
+                    "source": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/b/newb", "type": "git" },
+                    "dist": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/repos/b/newb/tarball/2222222222222222222222222222222222222222", "type": "tar", "shasum": "newsum" }
+                },
+                {
+                    "name": "c/c",
+					"version": "1.0.0",
+                    "source": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/c/newc", "type": "git" },
+                    "dist": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/repos/c/newc/tarball/2222222222222222222222222222222222222222", "type": "tar", "shasum": "newsum" }
+                },
+                {
+                    "name": "d/d",
+					"version": "dev-master",
+                    "source": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/d/newd", "type": "git" },
+                    "dist": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/repos/d/newd/tarball/2222222222222222222222222222222222222222", "type": "tar", "shasum": "newsum" }
+                },
+                {
+                    "name": "e/e",
+					"version": "dev-master",
+                    "source": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/e/newe", "type": "git" },
+                    "dist": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/repos/e/newe/tarball/2222222222222222222222222222222222222222", "type": "tar", "shasum": "newsum" }
+                },
+                {
+                    "name": "f/f",
+					"version": "dev-master",
+                    "source": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/f/newf", "type": "git" },
+                    "dist": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/repos/f/newf/tarball/2222222222222222222222222222222222222222", "type": "tar", "shasum": "newsum" }
+                },
+                {
+                    "name": "g/g",
+					"version": "dev-master",
+                    "source": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/g/newg", "type": "git" },
+                    "dist": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/repos/g/newg/tarball/2222222222222222222222222222222222222222", "type": "tar", "shasum": "newsum" }
+                }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "dev-master",
+        "b/b": "2.0.3",
+        "c/c": "1.0.0",
+        "d/d": "dev-master#1111111111111111111111111111111111111111",
+        "e/e": "dev-master#1111111111111111111111111111111111111111",
+        "f/f": "dev-master",
+        "g/g": "dev-master#1111111111111111111111111111111111111111"
+    }
+}
+--INSTALLED--
+{
+	"packages": [
+		{
+			"name": "a/a",
+			"version": "dev-master",
+			"source": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/a/a", "type": "git" },
+			"dist": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/repos/a/a/zipball/1111111111111111111111111111111111111111", "type": "zip", "shasum": "oldsum" }
+		},
+		{
+			"name": "b/b",
+			"version": "2.0.3",
+			"source": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/b/b", "type": "git" },
+			"dist": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/repos/b/b/zipball/1111111111111111111111111111111111111111", "type": "zip", "shasum": "oldsum" }
+		},
+		{
+			"name": "c/c",
+			"version": "1.0.0",
+			"source": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/c/c", "type": "git" },
+			"dist": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/repos/c/c/zipball/1111111111111111111111111111111111111111", "type": "zip", "shasum": "oldsum" }
+		},
+		{
+			"name": "d/d",
+			"version": "dev-master",
+			"source": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/d/d", "type": "git" },
+			"dist": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/repos/d/d/zipball/1111111111111111111111111111111111111111", "type": "zip", "shasum": "oldsum" }
+		},
+		{
+			"name": "f/f",
+			"version": "dev-master",
+			"source": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/f/f", "type": "git" },
+			"dist": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/repos/f/f/zipball/1111111111111111111111111111111111111111", "type": "zip", "shasum": "oldsum" }
+		},
+		{
+			"name": "g/g",
+			"version": "dev-master",
+			"source": { "reference": "0000000000000000000000000000000000000000", "url": "https://example.com/g/g", "type": "git" },
+			"dist": { "reference": "0000000000000000000000000000000000000000", "url": "https://example.com/repos/g/g/zipball/0000000000000000000000000000000000000000", "type": "zip", "shasum": "oldsum" }
+		}
+	]
+}
+--EXPECT-LOCK--
+{
+    "packages": [
+        {
+            "name": "a/a",
+			"version": "dev-master",
+            "source": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/a/newa", "type": "git" },
+            "dist": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/repos/a/newa/tarball/2222222222222222222222222222222222222222", "type": "tar", "shasum": "newsum" }
+        },
+        {
+            "name": "b/b",
+			"version": "2.0.3",
+            "source": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/b/newb", "type": "git" },
+            "dist": { "reference": "2222222222222222222222222222222222222222", "url": "https://example.com/repos/b/newb/tarball/2222222222222222222222222222222222222222", "type": "tar", "shasum": "newsum" }
+        },
+        {
+            "name": "c/c",
+			"version": "1.0.0",
+            "source": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/c/newc", "type": "git" },
+            "dist": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/repos/c/newc/tarball/1111111111111111111111111111111111111111", "type": "tar", "shasum": "newsum" }
+        },
+        {
+            "name": "d/d",
+			"version": "dev-master",
+            "source": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/d/newd", "type": "git" },
+            "dist": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/repos/d/newd/tarball/1111111111111111111111111111111111111111", "type": "tar", "shasum": "newsum" }
+        },
+        {
+            "name": "e/e",
+			"version": "dev-master",
+            "source": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/e/newe", "type": "git" },
+            "dist": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/repos/e/newe/tarball/1111111111111111111111111111111111111111", "type": "tar", "shasum": "newsum" }
+        },
+        {
+            "name": "f/f",
+			"version": "dev-master",
+            "source": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/f/newf", "type": "git" },
+            "dist": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/repos/f/newf/tarball/1111111111111111111111111111111111111111", "type": "tar", "shasum": "newsum" }
+        },
+        {
+            "name": "g/g",
+			"version": "dev-master",
+            "source": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/g/newg", "type": "git" },
+            "dist": { "reference": "1111111111111111111111111111111111111111", "url": "https://example.com/repos/g/newg/tarball/1111111111111111111111111111111111111111", "type": "tar", "shasum": "newsum" }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "a/a": "dev",
+        "d/d": "dev",
+        "e/e": "dev",
+        "f/f": "dev",
+        "g/g": "dev"
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {}
+}
+--RUN--
+update a/a b/b d/d g/g
+
+--EXPECT--
+Installing e/e (dev-master 1111111)
+Updating a/a (dev-master 1111111) to a/a (dev-master 2222222)
+Updating g/g (dev-master 0000000) to g/g (dev-master 1111111)

@@ -1,0 +1,30 @@
+--TEST--
+Suggestions are displayed
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                { "name": "a/a", "version": "1.0.0", "suggest": { "b/b": "an obscure reason" } }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "1.0.0"
+    }
+}
+--RUN--
+install
+
+--EXPECT-OUTPUT--
+Loading bucket repositories with package information
+Updating dependencies (including require-dev)
+Package operations: 1 install, 0 updates, 0 removals
+Package operations have 1 suggestion:
+a/a suggests installing b/b (an obscure reason)
+Writing lock file
+
+--EXPECT--
+Installing a/a (1.0.0)

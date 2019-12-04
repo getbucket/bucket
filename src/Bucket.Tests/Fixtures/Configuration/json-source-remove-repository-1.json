@@ -1,0 +1,9 @@
+{
+    "repositories": [
+        {
+            "type": "bucket",
+            "url": "http://foo.com",
+            "allow-ssl-downgrade": false
+        }
+    ]
+}

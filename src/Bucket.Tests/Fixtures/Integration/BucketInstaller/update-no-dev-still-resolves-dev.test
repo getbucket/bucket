@@ -1,0 +1,69 @@
+--TEST--
+Updates with --no-dev but we still end up with a complete lock file including dev deps
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                { "name": "a/a", "version": "1.0.0" },
+                { "name": "a/a", "version": "1.0.1" },
+                { "name": "a/a", "version": "1.1.0" },
+
+                { "name": "a/b", "version": "1.0.0" },
+                { "name": "a/b", "version": "1.0.1" },
+                { "name": "a/b", "version": "2.0.0" },
+
+                { "name": "a/c", "version": "1.0.0" },
+                { "name": "a/c", "version": "2.0.0" },
+
+                { "name": "dev/pkg", "version": "1.1.x-dev", "source": {"type":"git", "url":"", "reference":"new"} },
+                { "name": "dev/pkg", "version": "1.0.0" }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "1.0.*",
+        "a/c": "1.*",
+        "dev/pkg": "^1.0@dev"
+    },
+    "require-dev": {
+        "a/b": "*"
+    }
+}
+--INSTALLED--
+{
+	"packages": [
+		{ "name": "a/a", "version": "1.0.0" },
+		{ "name": "a/b", "version": "1.0.0" },
+		{ "name": "dev/pkg", "version": "1.0.x-dev", "source": {"type":"git", "url":"", "reference":"old"} }
+	]
+}
+--EXPECT-LOCK--
+{
+    "packages": [
+        { "name": "a/a", "version": "1.0.1" },
+        { "name": "a/c", "version": "1.0.0" },
+        { "name": "dev/pkg", "version": "1.1.x-dev", "source": {"type":"git", "url":"", "reference":"new"} }
+    ],
+    "packages-dev": [
+        { "name": "a/b", "version": "2.0.0" }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "dev/pkg": "dev"
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {}
+}
+--RUN--
+update --no-dev
+
+--EXPECT--
+Uninstalling a/b (1.0.0)
+Updating a/a (1.0.0) to a/a (1.0.1)
+Updating dev/pkg (1.0.x-dev old) to dev/pkg (1.1.x-dev new)
+Installing a/c (1.0.0)

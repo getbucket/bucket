@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+    <FileVersion>0.3.7250.21600</FileVersion>
+    <Version>0.3.0+source</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bucket.Semver" Version="0.2.0-alpha.1" />
+    <PackageReference Include="GameBox.Console" Version="0.2.0-alpha.1" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.6.0-preview7.19362.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.11" />
+    <PackageReference Include="System.IO.Compression" Version="4.3.0" />
+    <PackageReference Include="System.IO.FileSystem.AccessControl" Version="4.6.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+	  <EmbeddedResource Include="Assets\Schema\**">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Signature\**">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

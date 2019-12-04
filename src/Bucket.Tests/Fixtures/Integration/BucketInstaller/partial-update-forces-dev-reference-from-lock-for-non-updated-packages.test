@@ -1,0 +1,89 @@
+--TEST--
+Partial update forces updates dev reference from lock file for non whitelisted packages
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                {
+                    "name": "a/a",
+					"version": "2.1.x-dev",
+                    "source": { "reference": "newmaster-a2", "type": "git", "url": "https://example.com" }
+                },
+                {
+                    "name": "b/b",
+					"version": "2.1.x-dev",
+                    "source": { "reference": "newmaster-b2", "type": "git", "url": "https://example.com" }
+                }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "~2.1",
+        "b/b": "~2.1"
+    },
+    "minimum-stability": "dev"
+}
+--INSTALLED--
+{
+	"packages": [
+		{
+			"name": "a/a",
+			"version": "2.1.x-dev",
+			"source": { "reference": "oldmaster-a", "type": "git", "url": "https://example.com" }
+		},
+		{
+			"name": "b/b",
+			"version": "2.1.x-dev",
+			"source": { "reference": "oldmaster-b", "type": "git", "url": "https://example.com" }
+		}
+	]
+}
+--LOCK--
+{
+    "packages": [
+        {
+            "name": "a/a", "version": "2.1.x-dev",
+            "source": { "reference": "newmaster-a", "type": "git", "url": "https://example.com" }
+        },
+        {
+            "name": "b/b", "version": "2.1.x-dev",
+            "source": { "reference": "oldmaster-b", "type": "git", "url": "https://example.com" }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false
+}
+--RUN--
+update b/b
+
+--EXPECT-LOCK--
+{
+    "packages": [
+        {
+            "name": "a/a",
+			"version": "2.1.x-dev",
+            "source": { "reference": "newmaster-a", "type": "git", "url": "https://example.com" }
+        },
+        {
+            "name": "b/b",
+			"version": "2.1.x-dev",
+            "source": { "reference": "newmaster-b2", "type": "git", "url": "https://example.com" }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {}
+}
+--EXPECT--
+Updating a/a (2.1.x-dev oldmaster-a) to a/a (2.1.x-dev newmaster-a)
+Updating b/b (2.1.x-dev oldmaster-b) to b/b (2.1.x-dev newmaster-b2)

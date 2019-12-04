@@ -1,0 +1,28 @@
+--TEST--
+Suggestions are not displayed in non-dev mode
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                { "name": "a/a", "version": "1.0.0", "suggest": { "b/b": "an obscure reason" } }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "1.0.0"
+    }
+}
+--RUN--
+install --no-dev
+
+--EXPECT-OUTPUT--
+Loading bucket repositories with package information
+Updating dependencies
+Package operations: 1 install, 0 updates, 0 removals
+Writing lock file
+
+--EXPECT--
+Installing a/a (1.0.0)

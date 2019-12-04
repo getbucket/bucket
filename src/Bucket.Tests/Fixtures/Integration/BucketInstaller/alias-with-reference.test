@@ -1,0 +1,68 @@
+--TEST--
+Aliases of referenced packages work
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                {
+                    "name": "a/aliased",
+					"version": "dev-master",
+                    "source": { "reference": "orig", "type": "git", "url": "" }
+                },
+                {
+                    "name": "b/requirer",
+					"version": "1.0.0",
+                    "require": { "a/aliased": "1.0.0" },
+                    "source": { "reference": "1.0.0", "type": "git", "url": "" }
+                }
+            ]
+        }
+    ],
+    "require": {
+        "a/aliased": "dev-master#abcd as 1.0.0",
+        "b/requirer": "*"
+    }
+}
+--RUN--
+install
+
+--EXPECT--
+Installing a/aliased (dev-master abcd)
+Marking a/aliased (1.0.0) as installed, alias of a/aliased (dev-master abcd)
+Installing b/requirer (1.0.0)
+
+--EXPECT-LOCK--
+{
+    "packages": [
+        {
+            "name": "a/aliased",
+            "version": "dev-master",
+            "source": { "type": "git", "url": "", "reference": "abcd" }
+        },
+        {
+            "name": "b/requirer",
+            "version": "1.0.0",
+            "require": { "a/aliased": "1.0.0" },
+            "source": { "type": "git", "url": "", "reference": "1.0.0" }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [
+        {
+            "alias": "1.0.0",
+            "alias-normalized": "1.0.0.0",
+            "version": "9999999-dev",
+            "package": "a/aliased"
+        }
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "a/aliased": "dev"
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {}
+}

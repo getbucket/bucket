@@ -1,0 +1,33 @@
+--TEST--
+Bucket plugin and their requirements are installed first
+
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                { "name": "a/a", "version": "1.0.0" },
+                { "name": "b/b", "version": "1.0.0" },
+                { "name": "plugin", "version": "1.0.0", "type": "bucket-plugin" },
+                { "name": "plugin-with-req", "version": "1.0.0", "type": "bucket-plugin", "require": { "bucket-plugin-api": "*" } },
+                { "name": "plugin-with-req2", "version": "1.0.0", "type": "bucket-plugin", "require": { "b/b": "*" } }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "1.0.0",
+        "plugin": "1.0.0",
+        "plugin-with-req": "1.0.0",
+		"plugin-with-req2": "1.0.0"
+    }
+}
+--RUN--
+install
+
+--EXPECT--
+Installing plugin (1.0.0)
+Installing plugin-with-req (1.0.0)
+Installing b/b (1.0.0)
+Installing plugin-with-req2 (1.0.0)
+Installing a/a (1.0.0)

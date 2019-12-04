@@ -1,0 +1,40 @@
+{
+	"name": "foo/bar",
+	"version": "invalid-version",
+	"type": "invalid-type(*)",
+	"require": {
+		"foo": "^1.0",
+		"bar": "~2.2",
+		"baz": "invalid-require"
+	},
+	"require-dev": {
+		"foo-dev": "~1.1",
+		"bar-dev": "~2.2"
+	},
+	"replace": {
+		"foo-replace": "1.6"
+	},
+	"provide": {
+		"foo-provide": "1.2"
+	},
+	"conflict": {
+		"bar-conflict": "2.7"
+	},
+	"suggest": {
+		"bar": "bar-suggest"
+	},
+	"support": {
+		"issues": "https://github.com/foo/bar/issues",
+		"email": "foo@support.com",
+		"foo": "support-invalid"
+	},
+	"authors": [
+		{
+			"name": "foo"
+		},
+		{
+			"name": "bar",
+			"email": "email-invalid"
+		}
+	]
+}

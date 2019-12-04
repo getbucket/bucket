@@ -1,0 +1,47 @@
+--TEST--
+Install from a lock file that deleted a package
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                { "name": "required", "version": "1.1.0" },
+                { "name": "required", "version": "1.0.0", "require": { "fixed-dependency": "1.0.0", "old-dependency": "1.0.0" } },
+                { "name": "fixed-dependency", "version": "1.1.0" },
+                { "name": "fixed-dependency", "version": "1.0.0" },
+                { "name": "old-dependency", "version": "1.0.0" }
+            ]
+        }
+    ],
+    "require": {
+        "required": "1.*",
+        "fixed-dependency": "1.*"
+    }
+}
+--LOCK--
+{
+    "packages": [
+        { "name": "required", "version": "1.1.0" },
+        { "name": "fixed-dependency", "version": "1.0.0" }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {},
+    "prefer-stable": false
+}
+--INSTALLED--
+{
+    "packages": [
+		{ "name": "required", "version": "1.0.0", "require": { "old-dependency": "1.0.0", "fixed-dependency": "1.0.0" } },
+		{ "name": "fixed-dependency", "version": "1.0.0" },
+		{ "name": "old-dependency", "version": "1.0.0" }
+	]
+}
+--RUN--
+install
+
+--EXPECT--
+Uninstalling old-dependency (1.0.0)
+Updating required (1.0.0) to required (1.1.0)

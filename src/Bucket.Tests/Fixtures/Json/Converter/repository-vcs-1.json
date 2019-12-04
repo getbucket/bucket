@@ -1,0 +1,10 @@
+{
+  "repositories": [
+    {
+      "name": "foo",
+      "type": "git",
+      "url": "https://example.com/",
+      "secure-http": false
+    }
+  ]
+}

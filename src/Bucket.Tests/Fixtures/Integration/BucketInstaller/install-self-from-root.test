@@ -1,0 +1,17 @@
+--TEST--
+Tries to require a package with the same name as the root package
+--BUCKET--
+{
+    "name": "foo/bar",
+	"version": "1.0.0",
+    "require": {
+        "foo/bar": "@dev"
+    }
+}
+--RUN--
+install
+--EXPECT-EXCEPTION--
+RuntimeException
+--EXPECT--
+Root package "foo/bar" cannot require itself in its bucket.json
+Did you accidentally name your root package after an external package?

@@ -1,0 +1,35 @@
+--TEST--
+Requirements from the bucket file are not installed if the lock file is present
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                { "name": "a/a", "version": "1.0.0" },
+                { "name": "b/b", "version": "1.0.0" }
+            ]
+        }
+    ],
+    "require": {
+        "a/b": "1.0.0",
+        "b/b": "1.0.0"
+    }
+}
+--LOCK--
+{
+    "packages": [
+        { "name": "a/a", "version": "1.0.0" }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false
+}
+--RUN--
+install
+
+--EXPECT--
+Installing a/a (1.0.0)

@@ -1,0 +1,20 @@
+{
+	"config": {
+		"home": "foo",
+		"cache-dir": "cache/dir/",
+		"cache-repo-dir": "{$cache-dir}/repo/",
+		"cache-vcs-dir": "{$cache-dir}/vcs/",
+		"vendor-dir": "foo-vendor",
+		"bin-dir": "foo-bin",
+		"bin-compat": "full",
+		"secure-http": false,
+		"github-protocols": [ "git", "ssh" ],
+		"github-domains": [ "github.com" ],
+		"gitlab-domains": [ "gitlab.com" ],
+		"store-auths": "prompt",
+		"discard-changes": true,
+		"preferred-install": "source",
+		"cache-files-ttl": 100,
+		"cache-files-maxsize": "   200  kb  "
+	}
+}

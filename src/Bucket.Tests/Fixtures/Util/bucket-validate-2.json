@@ -1,0 +1,10 @@
+{
+	"name": "fooBar",
+	"version": "1.0.0",
+	"license": "mit",
+	"require": {
+		"bar": "dev-master#372605ccf914a95c7d41d7a09efde2320aae959c",
+		"baz": "2.0.0",
+		"boo": "1.0.x-dev#4ac510f86ee0f45e30bf5f1879877e1e0d584c3d"
+	}
+}

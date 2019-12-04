@@ -1,0 +1,520 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema",
+	"title": "Bucket schema for bucket.json file format.",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [ "name", "version" ],
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "Package name, optional including 'provider-name/' prefix."
+		},
+		"version": {
+			"type": "string",
+			"description": "Package version."
+		},
+		"description": {
+			"type": "string",
+			"description": "Short package description."
+		},
+		"keywords": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"description": "A keyword that this package relates to."
+			}
+		},
+		"homepage": {
+			"type": "string",
+			"description": "Homepage uri for the project.",
+			"format": "uri"
+		},
+		"license": {
+			"type": [ "string", "array" ],
+			"description": "License name. or an array of license names."
+		},
+		"release-date": {
+			"type": "string",
+			"description": "Package release date, in 'YYYY-MM-DD' or 'YYYY-MM-DD HH:MM:SS' format."
+		},
+		"type": {
+			"description": "Package type, either 'library' for common packages, 'plugin' for plugins, 'metapackage' for metapackage, or a custom type ([a-z0-9-]+) defined by whatever project this package applies to.",
+			"type": "string"
+		},
+		"notification-url": {
+			"type": "string",
+			"description": "Notification uri for the package install, uninstall, update.",
+			"format": "uri"
+		},
+		"require": {
+			"type": "object",
+			"description": "This is a hash of package name (keys) and version constraints (values) that are required to run this package.",
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"require-dev": {
+			"type": "object",
+			"description": "This is a hash of package name (keys) and version constraints (values) that this package requires for developing it (testing tools and such).",
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"replace": {
+			"type": "object",
+			"description": "This is a hash of package name (keys) and version constraints (values) that can be replaced by this package.",
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"provide": {
+			"type": "object",
+			"description": "This is a hash of package name (keys) and version constraints (values) that this package provides in addition to this package's name.",
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"conflict": {
+			"type": "object",
+			"description": "This is a hash of package name (keys) and version constraints (values) that conflict with this package.",
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"suggest": {
+			"type": "object",
+			"description": "This is a hash of package name (keys) and descriptions (values) that this package suggests work well with it (this will be suggested to the user during installation).",
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"support": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"type": "string",
+					"description": "Email address for support.",
+					"format": "email"
+				},
+				"issues": {
+					"type": "string",
+					"description": "URL to the issue tracker.",
+					"format": "uri"
+				},
+				"forum": {
+					"type": "string",
+					"description": "URL to the forum.",
+					"format": "uri"
+				},
+				"wiki": {
+					"type": "string",
+					"description": "URL to the wiki.",
+					"format": "uri"
+				},
+				"source": {
+					"type": "string",
+					"description": "URL to browse or download the sources.",
+					"format": "uri"
+				},
+				"docs": {
+					"type": "string",
+					"description": "URL to the documentation.",
+					"format": "uri"
+				}
+			}
+		},
+		"authors": {
+			"$ref": "#/definitions/authors"
+		},
+		"deprecated": {
+			"type": [ "boolean", "string" ],
+			"description": "Indicates whether this package has been deprecated, it can be boolean or a package name/URL pointing to a recommended alternative. Defaults to false."
+		},
+		"scripts": {
+			"type": [ "object" ],
+			"description": "Script listeners that will be executed before/after some events.",
+			"additionalProperties": true
+		},
+		"archive": {
+			"type": [ "string", "array" ],
+			"description": "Options for creating package archives for distribution.",
+			"items": {
+				"type": "string"
+			}
+		},
+		"extra": {
+			"type": [ "object" ],
+			"properties": {
+				"plugin": {
+					"type": [ "array", "string" ]
+				}
+			},
+			"additionalProperties": true
+		},
+		"bin": {
+			"type": [ "string", "array" ],
+			"description": "A set of files, or a single file, that should be treated as binaries.",
+			"items": {
+				"type": "string"
+			}
+		},
+		"minimum-stability": {
+			"type": [ "string" ],
+			"description": "The minimum stability the packages must have to be install-able. Possible values are: dev, alpha, beta, RC, stable.",
+			"pattern": "^dev|alpha|beta|rc|RC|stable$"
+		},
+		"platform": {
+			"type": "object",
+			"description": "This the manually configured platform package information.",
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"prefer-stable": {
+			"type": [ "boolean" ],
+			"description": "If set to true, stable packages will be preferred to dev packages when possible, even if the minimum-stability allows unstable packages."
+		},
+		"config": {
+			"type": "object",
+			"description": "Bucket options.",
+      "properties": {
+        "cache-dir": {
+          "type": "string",
+          "description": "The location where all caches are located, defaults to \"~/.bucket/cache\" on *nix and \"%LOCALAPPDATA%\\Bucket\" on windows."
+        },
+        "cache-repo-dir": {
+          "type": "string",
+          "description": "The location where repo (git repo clones) are cached, defaults to \"{$cache-dir}/repo\"."
+        },
+        "cache-vcs-dir": {
+          "type": "string",
+          "description": "The location where vcs infos (git clones, github api calls, etc. when reading vcs repos) are cached, defaults to \"{$cache-dir}/vcs\"."
+        },
+        "cache-files-dir": {
+          "type": "string",
+          "description": "The location where files (zip downloads) are cached, defaults to \"{$cache-dir}/files\"."
+        },
+        "vendor-dir": {
+          "type": "string",
+          "description": "The location where all packages are installed, defaults to \"vendor\"."
+        },
+        "bin-dir": {
+          "type": "string",
+          "description": "The location where all binaries are linked, defaults to \"vendor/bin\"."
+        },
+        "backup-dir": {
+          "type": "string",
+          "description": "It is only used for storing past bucket application to be able to rollback to older versions, defaults to \"{$home}/backup\"."
+        },
+        "bin-compat": {
+          "enum": [ "auto", "full" ],
+          "description": "The compatibility of the binaries, defaults to \"auto\" (automatically guessed) and can be \"full\" (compatible with both Windows and Unix-based systems)."
+        },
+        "secure-http": {
+          "type": "boolean",
+          "description": "Defaults to `true`. If set to true only HTTPS URLs are allowed to be downloaded via Bucket. If you really absolutely need HTTP access to something then you can disable it, but using \"Let's Encrypt\" to get a free SSL certificate is generally a better alternative."
+        },
+        "github-protocols": {
+          "type": "array",
+          "description": "A list of protocols to use for github.com clones, in priority order, defaults to [\"https\", \"ssh\", \"git\"].",
+          "items": {
+            "type": "string"
+          }
+        },
+        "github-domains": {
+          "type": "array",
+          "description": "A list of domains to use in github mode. This is used for GitHub Enterprise setups, defaults to [\"github.com\"].",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gitlab-domains": {
+          "type": "array",
+          "description": "A list of domains to use in gitlab mode. This is used for custom GitLab setups, defaults to [\"gitlab.com\"].",
+          "items": {
+            "type": "string"
+          }
+        },
+        "store-auths": {
+          "type": [ "string", "boolean" ],
+          "description": "What to do after prompting for authentication, one of: true (store), false (do not store) or \"prompt\" (ask every time), defaults to prompt."
+        },
+        "github-oauth": {
+          "type": "object",
+          "description": "A hash of domain name => github API oauth tokens, typically {\"github.com\":\"<token>\"}.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "gitlab-oauth": {
+          "type": "object",
+          "description": "A hash of domain name => gitlab API oauth tokens, typically {\"gitlab.com\":\"<token>\"}.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "gitlab-token": {
+          "type": "object",
+          "description": "A hash of domain name => gitlab private tokens, typically {\"gitlab.com\":\"<token>\"}.",
+          "additionalProperties": true
+        },
+        "http-basic": {
+          "type": "object",
+          "description": "A hash of domain name => {\"username\": \"...\", \"password\": \"...\"}.",
+          "additionalProperties": {
+            "type": "object",
+            "required": [ "username", "password" ],
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "The username used for HTTP Basic authentication"
+              },
+              "password": {
+                "type": "string",
+                "description": "The password used for HTTP Basic authentication"
+              }
+            }
+          }
+        },
+        "discard-changes": {
+          "type": [ "string", "boolean" ],
+          "description": "The default style of handling dirty updates, defaults to false and can be any of true, false or \"stash\"."
+        },
+        "preferred-install": {
+          "type": [ "string", "object" ],
+          "description": "The install method Bucket will prefer to use, defaults to auto and can be any of source, dist, auto, or a hash of {\"pattern\": \"preference\"}."
+        },
+        "cache-ttl": {
+          "type": "integer",
+          "description": "The default cache time-to-live, defaults to 15552000 (6 months)."
+        },
+        "cache-files-ttl": {
+          "type": "integer",
+          "description": "The cache time-to-live for files, defaults to the value of cache-ttl."
+        },
+        "cache-files-maxsize": {
+          "type": [ "string", "integer" ],
+          "description": "The cache max size for the files cache, defaults to \"300MiB\"."
+        },
+        "sort-packages": {
+          "type": "boolean",
+          "description": "Defaults to false. If set to true, Bucket will sort packages when adding/updating a new dependency."
+        }
+      }
+		},
+		"repositories": {
+			"type": "array",
+			"description": "A set of additional repositories where packages can be found.",
+			"items": {
+				"$ref": "#/definitions/repository"
+			}
+		}
+	},
+	"definitions": {
+		"authors": {
+			"type": "array",
+			"description": "List of authors that contributed to the package. This is typically the main maintainers, not the full list.",
+			"items": {
+				"type": "object",
+				"additionalProperties": false,
+				"required": [ "name" ],
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "Full name of the author."
+					},
+					"email": {
+						"type": "string",
+						"description": "Email address of the author.",
+						"format": "email"
+					},
+					"homepage": {
+						"type": "string",
+						"description": "Homepage URL for the author.",
+						"format": "uri"
+					},
+					"role": {
+						"type": "string",
+						"description": "Author's role in the project."
+					}
+				}
+			}
+		},
+    "repository": {
+      "type": "object",
+      "oneOf": [
+        { "$ref": "#/definitions/repository-bucket" },
+        { "$ref": "#/definitions/repository-vcs" },
+        { "$ref": "#/definitions/repository-package" },
+        { "$ref": "#/definitions/repository-disabled" }
+      ]
+    },
+    "repository-disabled": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_-]*$"
+      },
+      "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_-]*$": { "type": "boolean" }
+      }
+    },
+		"repository-bucket": {
+			"type": "object",
+			"required": [ "type", "url" ],
+			"properties": {
+				"name": { "type": "string" },
+				"type": {
+					"type": "string",
+					"enum": [ "bucket" ]
+				},
+				"url": { "type": "string" },
+				"allow-ssl-downgrade": { "type": "boolean" }
+			}
+		},
+		"repository-vcs": {
+			"type": "object",
+			"required": [ "type", "url" ],
+			"properties": {
+				"name": { "type": "string" },
+				"type": {
+					"type": "string",
+					"enum": [ "vcs", "github", "git", "gitlab" ]
+				},
+				"url": { "type": "string" },
+				"secure-http": { "type": "boolean" }
+			}
+		},
+		"repository-package": {
+			"type": "object",
+			"required": [ "type", "package" ],
+			"properties": {
+				"name": { "type": "string" },
+				"type": {
+					"type": "string",
+					"enum": [ "package" ]
+				},
+				"package": {
+					"type": "array",
+					"items": { "$ref": "#/definitions/package-inline" }
+				}
+			}
+		},
+		"package-inline": {
+			"type": "object",
+			"required": [ "name", "version" ],
+			"additionalProperties": true,
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Package name, optional including 'provider-name/' prefix."
+				},
+				"version": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"keywords": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"homepage": {
+					"type": "string",
+					"format": "uri"
+				},
+				"release-date": {
+					"type": "string"
+				},
+				"license": {
+					"type": [
+						"string",
+						"array"
+					]
+				},
+				"authors": {
+					"$ref": "#/definitions/authors"
+				},
+				"require": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"require-dev": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"replace": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"conflict": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"provide": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"suggest": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"source": {
+					"type": "object",
+					"required": [ "type", "url", "reference" ],
+					"properties": {
+						"type": {
+							"type": "string"
+						},
+						"url": {
+							"type": "string"
+						},
+						"reference": {
+							"type": "string"
+						},
+						"mirrors": {
+							"type": "array"
+						}
+					}
+				},
+				"dist": {
+					"type": "object",
+					"required": [ "type", "url" ],
+					"properties": {
+						"type": {
+							"type": "string"
+						},
+						"url": {
+							"type": "string"
+						},
+						"reference": {
+							"type": "string"
+						},
+						"shasum": {
+							"type": "string"
+						},
+						"mirrors": {
+							"type": "array"
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"name": "plugin-v4",
+	"version": "1.0.0",
+	"type": "bucket-plugin",
+	"extra": {
+		"plugin": "Example.Plugin.dll"
+	}
+}

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="GameBox Code Analysis Ruleset" Description="The gamebox code analysis ruleset" ToolsVersion="10.0">
+  <Include Path="analysis.ruleset" Action="Default" />
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+	<Rule Id="SA1600" Action="None" /> <!-- Elements must be documented -->
+  </Rules>
+  <Rules AnalyzerId="SonarAnalyzer.CSharp" RuleNamespace="SonarAnalyzer.CSharp">
+	<Rule Id="S1121" Action="None" /> <!-- Assignments should not be made from within sub-expressions -->
+	<Rule Id="S2699" Action="None" /> <!-- Tests should include assertions -->
+	<Rule Id="S2187" Action="None" /> <!-- Add some tests in the file -->
+  </Rules>
+</RuleSet>

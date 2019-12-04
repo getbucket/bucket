@@ -1,0 +1,50 @@
+--TEST--
+Update updates the outdated state of packages
+
+--BUCKET--
+{
+	"name": "dummy",
+	"version": "1.0.0",
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                {
+                    "name": "a/a", "version": "1.0.0", "deprecated": true
+                }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "1.0.0"
+    }
+}
+--INSTALLED--
+{
+	"packages": [
+		{
+			"name": "a/a", "version": "1.0.0"
+		}
+	]
+}
+--EXPECT-LOCK--
+{
+    "packages": [
+        {
+            "name": "a/a",
+			"version": "1.0.0",
+            "deprecated": true
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {}
+}
+--RUN--
+update
+
+--EXPECT--

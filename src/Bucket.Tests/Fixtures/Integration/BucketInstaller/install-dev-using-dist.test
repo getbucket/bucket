@@ -1,0 +1,52 @@
+--TEST--
+Installs a dev package from lock using dist
+--BUCKET--
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": [
+                {
+                    "name": "a/a",
+                    "version": "dev-master",
+                    "dist": {
+                        "type": "zip",
+                        "url": "http://www.example.com/dist.zip",
+                        "reference": "1234567890123456789012345678901234567890"
+                    }
+                }
+            ]
+        }
+    ],
+    "require": {
+        "a/a": "dev-master"
+    },
+    "minimum-stability": "dev"
+}
+--RUN--
+install --prefer-dist
+--EXPECT-LOCK--
+{
+    "packages": [
+        {
+            "name": "a/a",
+            "version": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "http://www.example.com/dist.zip",
+                "reference": "1234567890123456789012345678901234567890"
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "a/a": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {}
+}
+--EXPECT--
+Installing a/a (dev-master)

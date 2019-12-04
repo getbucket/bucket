@@ -1,0 +1,9 @@
+{
+  "repositories": [
+		{
+			"name": "foo",
+			"type": "bucket",
+			"url": "https://example.com/"
+		}
+  ]
+}

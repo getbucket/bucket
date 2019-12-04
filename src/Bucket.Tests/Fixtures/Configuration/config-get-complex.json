@@ -1,0 +1,21 @@
+{
+	"config": {
+		"github-oauth": {
+			"github.com": "foo",
+			"private.github.com": "bar"
+		},
+		"gitlab-oauth": {
+			"gitlab.com": "foo",
+			"private.gitlab.com": "bar"
+		},
+		"gitlab-token": {
+			"gitlab.com": "foo"
+		},
+		"http-basic": {
+			"example.org": {
+				"username": "foo",
+				"password": "bar"
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Fixtures\**" />
+    <EmbeddedResource Remove="Fixtures\**" />
+    <PackageReference Include="Bucket.Semver" Version="0.2.0-alpha.1" />
+    <PackageReference Include="GameBox.Console" Version="0.2.0-alpha.1" />
+	<None Update="Fixtures\**" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bucket\Bucket.csproj" />
+  </ItemGroup>
+
+</Project>
