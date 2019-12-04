@@ -1,4 +1,4 @@
-# Bucket package manager ![](https://github.com/getbucket/bucket/workflows/bucket/badge.svg)
+# Bucket package manager ![](https://github.com/getbucket/bucket/workflows/bucket/badge.svg) [![codecov](https://codecov.io/gh/getbucket/bucket/branch/master/graph/badge.svg)](https://codecov.io/gh/getbucket/bucket)
 
 Bucket helps you install, update, and remove dependencies of projects.
 
