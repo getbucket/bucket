@@ -18,6 +18,7 @@ using Bucket.Util.SCM;
 using GameBox.Console.Process;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 using System.Net;
 using System.Net.Http.Headers;
 using static Moq.Mock;
@@ -115,8 +116,11 @@ namespace Bucket.Tests.Util.SCM
             var github = new Github(io.Object, config.Object, null, transport.Object);
             var (limit, reset) = github.GetRateLimit(headers);
 
+            var expectedReset = DateTimeOffset.FromUnixTimeSeconds(1574843420)
+                .ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
+
             Assert.AreEqual("5000", limit);
-            Assert.AreEqual("2019-11-27 16:30:20", reset);
+            Assert.AreEqual(expectedReset, reset);
         }
 
         [TestMethod]
