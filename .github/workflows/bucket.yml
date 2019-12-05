@@ -1,6 +1,12 @@
 name: bucket
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches: 
+    - master
 
 jobs:
   windows:
@@ -11,10 +17,16 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
     - uses: actions/checkout@v1
-    - name: Setup bucket on ${{ matrix.os }}
+      
+    - name: Setup dotnet 3.x on ${{ matrix.os }}
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100
+
+    - name: Setup dotnet 2.x on ${{ matrix.os }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.402
 
     - name: Test bucket on ${{ matrix.os }}
       if: matrix.os == 'windows-latest'
