@@ -18,6 +18,7 @@ using Bucket.Package;
 using Bucket.Tester;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 using System.IO;
 
 namespace Bucket.Tests.Downloader
@@ -87,6 +88,20 @@ namespace Bucket.Tests.Downloader
             StringAssert.Contains(
                 tester.GetDisplay(),
                 "  - Installing foo/bar (1.2.0 1234567): Extracting archive");
+        }
+
+        [TestMethod]
+        public void TestOnlySingleFileInDirectionary()
+        {
+            var packageMock = new Mock<IPackage>();
+            packageMock.Setup((o) => o.GetDistUri())
+                .Returns("https://example.com/foo/bar.zip");
+
+            fileSystem.SetupSequence((o) => o.GetContents(It.IsAny<string>()))
+                .Returns(new DirectoryContents(Array.Empty<string>(), new[] { "bucket.json" }));
+
+            downloader.Object.Install(packageMock.Object, "/path", true);
+            fileSystem.Verify((o) => o.Move(It.IsRegex(@"[a-zA-Z0-9]{7}$"), "/path"));
         }
 
         [TestMethod]
