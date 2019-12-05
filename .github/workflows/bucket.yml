@@ -4,16 +4,21 @@ on: [push, pull_request]
 
 jobs:
   windows:
-    runs-on: windows-latest
+    name: Bucket test run on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
     - uses: actions/checkout@v1
-    - name: Setup bucket
+    - name: Setup bucket on ${{ matrix.os }}
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100
-    - name: Test bucket
+    - name: Test bucket on ${{ matrix.os }}
       run: dotnet test -c Release -s src/settings.runsettings /p:CollectCoverage=true /p:CoverletOutput=\"coverage/\" /p:CoverletOutputFormat=opencover /p:Exclude=[*.Tests]* /p:Threshold=60 /p:ThresholdType=line
     - name: Report code coverage
+      if: ${{ matrix.os }} == 'windows-latest'
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: | 
