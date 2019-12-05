@@ -10,6 +10,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Bucket.Tests.Support
 {
@@ -17,7 +18,7 @@ namespace Bucket.Tests.Support
     {
         public static void NotContains(this StringAssert assert, string value, string substring, string message = null, params object[] parameters)
         {
-            if (value == substring || value.Contains(substring))
+            if (value == substring || value.Contains(substring, StringComparison.Ordinal))
             {
                 Assert.Fail(message, parameters);
             }

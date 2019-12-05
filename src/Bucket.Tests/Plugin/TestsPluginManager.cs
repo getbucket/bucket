@@ -232,7 +232,7 @@ namespace Bucket.Tests.Plugin
             }
             catch (RuntimeException ex)
             {
-                if (!ex.Message.Contains(expectedExceptionMessage))
+                if (!ex.Message.Contains(expectedExceptionMessage, StringComparison.Ordinal))
                 {
                     Assert.Fail($"Did not contain the expected exception message, expcted: \"{expectedExceptionMessage}\", actual: \"{ex.Message}\"");
                 }
