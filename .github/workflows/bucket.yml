@@ -15,12 +15,16 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100
+
     - name: Test bucket on ${{ matrix.os }}
-      run: dotnet test -c Release -s src/settings.runsettings /p:CollectCoverage=true /p:CoverletOutput=\"coverage/\" /p:CoverletOutputFormat=opencover /p:Exclude=[*.Tests]* /p:Threshold=60 /p:ThresholdType=line
-    - name: Report code coverage
       if: matrix.os == 'windows-latest'
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: | 
+        dotnet test -c Release -s src/settings.runsettings /p:CollectCoverage=true /p:CoverletOutput=\"coverage/\" /p:CoverletOutputFormat=opencover /p:Exclude=[*.Tests]* /p:Threshold=60 /p:ThresholdType=line
         dotnet tool install --global Codecov.Tool
         codecov -f /coverage/coverage.opencover.xml
+        
+    - name: Test bucket on ${{ matrix.os }}
+      if: matrix.os != 'windows-latest'
+      run: dotnet test -c Release -s src/settings.runsettings
