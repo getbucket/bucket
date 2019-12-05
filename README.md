@@ -11,9 +11,9 @@ Bucket helps you install, update, and remove dependencies of projects.
 
 Bucket has the most extensive and thorough [documentation](https://github.com/getbucket/bucket/wiki), making it a breeze to get started with the bucket.
 
-## Central Service
+## Central Server
 
-No public central service has been deployed at this stage.
+No public central server has been deployed at this stage.
 
 ## License
 
