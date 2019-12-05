@@ -18,7 +18,6 @@ using Bucket.Package.Loader;
 using Bucket.Repository.Vcs;
 using Bucket.Semver;
 using GameBox.Console.Exception;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;

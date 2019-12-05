@@ -222,7 +222,9 @@ namespace Bucket.Tests.Repository.Vcs
 
             Assert.AreEqual("foo", bucket.Name);
             Assert.AreEqual("1.0.0", bucket.Version);
-            Assert.AreEqual("2019-11-26 12:08:30", bucket.ReleaseDate?.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            var expectedReleaseDate = DateTime.Parse("2019-11-26T04:08:30Z").ToString("yyyy-MM-dd HH:mm:ss");
+            Assert.AreEqual(expectedReleaseDate, bucket.ReleaseDate?.ToString("yyyy-MM-dd HH:mm:ss"));
             Assert.AreEqual("https://github.com/owner/repository/issues", bucket.Support["issues"]);
             Assert.AreEqual("https://github.com/owner/repository/tree/master", bucket.Support["source"]);
 
