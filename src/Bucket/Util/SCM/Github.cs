@@ -98,9 +98,16 @@ namespace Bucket.Util.SCM
             var note = "Bucket";
 
             // todo: Switch to control whether hostname is displayed.
-            if (process.Execute("hostname", out string stdout) == 0)
+            try
             {
-                note = $"{note} on {stdout.Trim()}";
+                if (process.Execute("hostname", out string stdout) == 0)
+                {
+                    note = $"{note} on {stdout.Trim()}";
+                }
+            }
+            catch (TimeoutException)
+            {
+                // noop.
             }
 
             note = $"{note} {DateTime.Now.ToString("yyyy-MM-dd HHmm")}";
