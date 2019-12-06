@@ -28,7 +28,7 @@ Bucket has the most extensive and thorough [documentation](https://github.com/ge
 
 ## Central Server
 
-[Find or publish](https://gxpack.org) the package from bucket's central server.
+Find or publish the package from [gxpack.org](https://gxpack.org).
 
 ## License
 
