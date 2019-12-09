@@ -20,7 +20,7 @@ Bucket helps you install, update, and remove dependencies of projects.
 $ bucket require catlib/catlib
 ```
 
-- Now, [catlib](https://github.com/CatLib/CatLib) project and its corresponding dependencies is installed in you unity.
+- Now, [catlib](https://github.com/CatLib/CatLib) project and its dependencies is installed in you unity.
 
 ## Documention
 
