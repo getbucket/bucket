@@ -92,7 +92,7 @@ namespace Bucket.Downloader
 
                     files = Arr.Filter(files, (file) => !file.EndsWith(".DS_Store", StringComparison.Ordinal));
 
-                    if ((dirs.Length + files.Length) != 1)
+                    if ((dirs.Length + files.Length) != 1 || files.Length == 1)
                     {
                         return path;
                     }
