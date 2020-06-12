@@ -108,6 +108,8 @@ namespace Bucket.Command
                     new InputOption("update-no-dev", null, InputOptionModes.ValueNone, "Run the dependency update with the --no-dev option."),
                     new InputOption("sort-packages", null, InputOptionModes.ValueNone, "Sorts packages when adding/updating a new dependency"),
 
+                    new InputOption("allow-http", null, InputOptionModes.ValueNone, "Allow installation using unsafe(http, git, svn, ftp) protocols"),
+
                     // todo: add stability option.
                 })
                 .SetHelp(
@@ -119,6 +121,17 @@ matches to require.
 If you do not specify a version constraint, bucket will choose a suitable one based on the available package versions.
 
 If you do not want to install the new dependencies immediately you can call it with --no-update");
+        }
+
+        /// <inheritdoc />
+        protected override void Initialize(IInput input, IOutput output)
+        {
+            base.Initialize(input, output);
+
+            if (input.GetOption("allow-http"))
+            {
+                GuardConfig.AllowHttp = true;
+            }
         }
 
         /// <inheritdoc />

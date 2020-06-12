@@ -40,6 +40,7 @@ namespace Bucket.Command
                     new InputOption("no-progress", null, InputOptionModes.ValueNone, "Do not output download progress."),
                     new InputOption("no-suggest", null, InputOptionModes.ValueNone, "Do not show package suggestions."),
                     new InputOption("ignore-platform-reqs", null, InputOptionModes.ValueNone, "Ignore platform requirements."),
+                    new InputOption("allow-http", null, InputOptionModes.ValueNone, "Allow installation using unsafe(http, git, svn, ftp) protocols"),
                 }).SetHelp(
 @"The <info>install</info> command reads the bucket.lock file from
 the current directory, processes it, and downloads and installs all the
@@ -47,6 +48,17 @@ libraries and dependencies outlined in that file. If the file does not
 exist it will look for bucket.json and do the same.
 
 <info>bucket {command.name}</info>");
+        }
+
+        /// <inheritdoc />
+        protected override void Initialize(IInput input, IOutput output)
+        {
+            base.Initialize(input, output);
+
+            if (input.GetOption("allow-http"))
+            {
+                GuardConfig.AllowHttp = true;
+            }
         }
 
         /// <inheritdoc />

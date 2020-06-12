@@ -49,6 +49,7 @@ namespace Bucket.Command
                     new InputOption("prefer-lowest", null, InputOptionModes.ValueNone, "Prefer lowest versions of dependencies."),
                     new InputOption("ignore-platform-reqs", null, InputOptionModes.ValueNone, "Ignore platform requirements."),
                     new InputOption("root-requires", null, InputOptionModes.ValueNone, "Restricts the update to your first degree dependencies."),
+                    new InputOption("allow-http", null, InputOptionModes.ValueNone, "Allow installation using unsafe(http, git, svn, ftp) protocols"),
                 })
                 .SetHelp(
 @"The <info>update</info> command reads the bucket.json file from the
@@ -66,6 +67,17 @@ You may also use an asterisk (*) pattern to limit the update operation to packag
 from a specific vendor:
 
 <info>bucket {command.name} foo/package bar/* [...]</info>");
+        }
+
+        /// <inheritdoc />
+        protected override void Initialize(IInput input, IOutput output)
+        {
+            base.Initialize(input, output);
+
+            if (input.GetOption("allow-http"))
+            {
+                GuardConfig.AllowHttp = true;
+            }
         }
 
         /// <inheritdoc />

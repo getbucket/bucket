@@ -25,6 +25,11 @@ namespace Bucket.Util
         private static HashSet<string> warnedHosts;
 
         /// <summary>
+        /// Gets or sets a value indicating whether whether allow http to update.
+        /// </summary>
+        public static bool AllowHttp { get; set; } = false;
+
+        /// <summary>
         /// Guard that the passed URL is allowed to be used by current config, or throws an exception.
         /// </summary>
         public static void ProhibitUri(this Guard guard, Config config, string uri, IIO io = null)
@@ -43,6 +48,11 @@ namespace Bucket.Util
             var uriInstance = new Uri(uri);
             var scheme = uriInstance.Scheme;
             if (!Array.Exists(new[] { "http", "git", "ftp", "svn" }, (protocol) => protocol == scheme))
+            {
+                return;
+            }
+
+            if (AllowHttp)
             {
                 return;
             }
