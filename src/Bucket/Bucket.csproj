@@ -11,7 +11,7 @@
     <PackageReference Include="Bucket.Semver" Version="0.2.0-alpha.1" />
     <PackageReference Include="GameBox.Console" Version="0.2.0-alpha.1" />
     <PackageReference Include="Microsoft.CSharp" Version="4.6.0-preview7.19362.9" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.11" />
     <PackageReference Include="System.IO.Compression" Version="4.3.0" />
     <PackageReference Include="System.IO.FileSystem.AccessControl" Version="4.6.0" />
